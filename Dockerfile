@@ -25,6 +25,7 @@ WORKDIR /home/$USER/www
 
 RUN git clone https://github.com/wolfcharaa/tech_task.git .
 RUN rm composer.lock
+RUN rm -rf var/cache/*
 RUN cp .env .env.local
 RUN sed -i -e "s/DATABASE_URL=/DATABASE_URL='$DB_HOST'/g" .env.local
 
