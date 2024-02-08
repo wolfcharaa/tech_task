@@ -49,7 +49,10 @@ server {
 #### API методы для работы с пользователями
 
 ___GET___
-`http://tech_task.ru/api/1/user`
+`http://tech_task.ru/api/{user}/user`
+
+___DELETE___
+`http://tech_task.ru/api/{user}/user`
 
 ___POST___
 `http://tech_task.ru/api/user`

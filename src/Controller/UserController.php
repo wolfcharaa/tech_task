@@ -9,6 +9,7 @@ use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
@@ -28,7 +29,7 @@ class UserController extends AbstractController
     {
         $this->service->updateOrCreate($request->toArray());
 
-        return new JsonResponse(['message' => 'created successful']);
+        return new JsonResponse(['message' => 'created successful'], status: Response::HTTP_CREATED);
     }
 
     #[Route('/api/{user}/user', methods: Request::METHOD_PUT)]
@@ -36,6 +37,14 @@ class UserController extends AbstractController
     {
         $this->service->updateOrCreate($request->toArray(), $user);
 
-        return new JsonResponse(['message' => 'updated successful']);
+        return new JsonResponse(['message' => 'updated successful'], status: Response::HTTP_ACCEPTED);
+    }
+
+    #[Route('/api/{user}/user', methods: Request::METHOD_GET)]
+    public function remove(User $user): JsonResponse
+    {
+        $this->service->removeUser($user);
+
+        return new JsonResponse(['message' => 'successful']);
     }
 }

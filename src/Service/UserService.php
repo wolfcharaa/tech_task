@@ -49,4 +49,9 @@ class UserService
 
         return $user;
     }
+
+    public function removeUser(User $user): void
+    {
+        $this->em->remove($user);
+    }
 }
