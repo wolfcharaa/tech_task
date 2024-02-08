@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  back-api:
+    depends_on:
+      - nginx
+      - back-db
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        USER: ${USER:-tech_task}
+        DB_HOST: "postgresql://tech_task:tech_task@127.0.0.1:5432/tech_task?serverVersion=16&charset=utf8"
+  back-db:
+    image: postgres:14.4
+    restart: always
+    container_name: tech_task-db
+    environment:
+      - POSTGRES_DB=tech_task
+      - POSTGRES_USER=tech_task
+      - POSTGRES_PASSWORD=tech_task
+    ports:
+      - 5432:5432
+  nginx:
+    container_name: tech_task-nginx
+    image: nginx
+    ports:
+      - "8000:80"
