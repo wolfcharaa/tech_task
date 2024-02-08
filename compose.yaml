@@ -4,24 +4,45 @@ services:
   back-api:
     depends_on:
       - nginx
-      - back-db
+      - tech_task-db
     build:
       dockerfile: ./Dockerfile
       args:
         USER: ${USER:-tech_task}
         DB_HOST: postgresql:\/\/tech_task:tech_task@127.0.0.1:5432\/tech_task?serverVersion=14.4&charset=utf8
-  back-db:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:80/tcp"
+    networks:
+      - test_tech-network
+
+  tech_task-db:
     image: postgres:14.4
-    restart: always
+    restart: unless-stopped
     container_name: tech_task-db
+    tty: true
     environment:
-      - POSTGRES_DB=tech_task
-      - POSTGRES_USER=tech_task
-      - POSTGRES_PASSWORD=tech_task
+      POSTGRES_DB: "tech_task"
+      POSTGRES_USER: "tech_task"
+      POSTGRES_PASSWORD: "tech_task"
     ports:
       - 5432:5432
+    networks:
+      - test_tech-network
+
   nginx:
     container_name: tech_task-nginx
     image: nginx
     ports:
       - "8000:80"
+
+networks:
+  shared-network:
+    external: true
+  test_tech-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
