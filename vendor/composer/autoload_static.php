@@ -301,6 +301,7 @@ class ComposerStaticInit3326eef6f43a57b4e29168075551d99c
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Repository/UserRepository.php',
+        'App\\Service\\UserService' => __DIR__ . '/../..' . '/src/Service/UserService.php',
         'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Doctrine\\Bundle\\DoctrineBundle\\Attribute\\AsDoctrineListener' => __DIR__ . '/..' . '/doctrine/doctrine-bundle/Attribute/AsDoctrineListener.php',

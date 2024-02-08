@@ -60,6 +60,10 @@ class DoctrineMigrationsConfig implements \Symfony\Component\Config\Builder\Conf
         return $this;
     }
 
+    /**
+     * Storage to use for migration status metadata.
+     * @default {"table_storage":{"table_name":null,"version_column_name":null,"version_column_length":null,"executed_at_column_name":null,"execution_time_column_name":null}}
+    */
     public function storage(array $value = []): \Symfony\Config\DoctrineMigrations\StorageConfig
     {
         if (null === $this->storage) {

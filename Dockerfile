@@ -24,10 +24,10 @@ RUN mkdir /home/$USER/www
 WORKDIR /home/$USER/www
 
 RUN git clone https://github.com/wolfcharaa/tech_task.git .
-#RUN rm composer.lock
+RUN rm composer.lock
 RUN cp .env .env.local
 RUN sed -i -e "s/DATABASE_URL=/DATABASE_URL='$DB_HOST'/g" .env.local
 
 RUN composer install
 
-#ENTRYPOINT ["/bin/bash", "-c", "php bin/console doctrine:migrations:migarte --no-interaction"]
+ENTRYPOINT ["/bin/bash", "-c", "php bin/console doctrine:migrations:migarte --no-interaction"]

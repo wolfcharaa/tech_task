@@ -33,9 +33,12 @@ class DbalConfig
     }
 
     /**
+     * @template TValue
+     * @param TValue $value
      * @return \Symfony\Config\Doctrine\Dbal\TypeConfig|$this
+     * @psalm-return (TValue is array ? \Symfony\Config\Doctrine\Dbal\TypeConfig : static)
      */
-    public function type(string $name, mixed $value = []): \Symfony\Config\Doctrine\Dbal\TypeConfig|static
+    public function type(string $name, string|array $value = []): \Symfony\Config\Doctrine\Dbal\TypeConfig|static
     {
         if (!\is_array($value)) {
             $this->_usedProperties['types'] = true;
@@ -66,7 +69,10 @@ class DbalConfig
     }
 
     /**
+     * @template TValue
+     * @param TValue $value
      * @return \Symfony\Config\Doctrine\Dbal\ConnectionConfig|$this
+     * @psalm-return (TValue is array ? \Symfony\Config\Doctrine\Dbal\ConnectionConfig : static)
      */
     public function connection(string $name, mixed $value = []): \Symfony\Config\Doctrine\Dbal\ConnectionConfig|static
     {
