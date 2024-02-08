@@ -9,7 +9,7 @@ services:
       dockerfile: ./Dockerfile
       args:
         USER: ${USER:-tech_task}
-        DB_HOST: "postgresql://tech_task:tech_task@127.0.0.1:5432/tech_task?serverVersion=16&charset=utf8"
+        DB_HOST: postgresql:\/\/tech_task:tech_task@127.0.0.1:5432\/tech_task?serverVersion=14.4&charset=utf8
   back-db:
     image: postgres:14.4
     restart: always
